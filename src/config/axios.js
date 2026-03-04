@@ -4,7 +4,7 @@ const clienteAxios = axios.create({
     baseURL: import.meta.env.VITE_API_URL,
     headers: {
         'Accept' : 'application/json',
-        'X-Request-With': 'XMLHttpRequest'
+        'X-Requested-With': 'XMLHttpRequest'
     },
     withCredentials: true,
 })
