@@ -2,11 +2,13 @@ import { useEffect } from "react"
 import useSWR from "swr"
 import { useNavigate } from "react-router-dom"
 import clienteAxios from "../config/axios"
+import useQuiosco from '../hooks/useQuiosco'
 
 export const useAuth = ({middleware, url}) => {
 
     const token = localStorage.getItem('AUTH_TOKEN');
     const navigate = useNavigate();
+    const { obtenerCategorias } = useQuiosco();
 
     const { data: user, error, mutate } = useSWR(token ? '/api/user' : null, () => 
         clienteAxios('/api/user', {
@@ -27,6 +29,7 @@ export const useAuth = ({middleware, url}) => {
             localStorage.setItem('AUTH_TOKEN', data.token)
             setErrores([])
             await mutate()
+            await obtenerCategorias()
         } catch (error) {
             setErrores(Object.values(error.response?.data?.errors ?? {}))
         }
@@ -39,6 +42,7 @@ export const useAuth = ({middleware, url}) => {
             localStorage.setItem('AUTH_TOKEN', data.token);
             setErrores([])
             await mutate()
+            await obtenerCategorias()
         } catch (error) {
             setErrores(Object.values(error.response?.data?.errors ?? {}))
         }

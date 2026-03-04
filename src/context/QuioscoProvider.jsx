@@ -162,7 +162,8 @@ const QuioscoProvider = ({children}) => {
                     total,
                     handleSubmitNuevaOrden,
                     handleClickCompletarPedido,
-                    handleClickProductoAgotado
+                    handleClickProductoAgotado,
+                    obtenerCategorias
                 }
             }
             >{children}

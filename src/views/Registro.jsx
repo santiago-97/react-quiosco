@@ -27,7 +27,6 @@ export default function Registro() {
         registro(datos, setErrores);
     }
 
-
     return (
         <>
             <h1 className="text-4xl font-black">Crea tu Cuenta</h1>
