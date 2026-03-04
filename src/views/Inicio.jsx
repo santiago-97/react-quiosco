@@ -19,6 +19,8 @@ export default function Inicio() {
 
     if(isLoading) return 'Cargando...';
 
+    if(!categoriaActual?.id) return 'Cargando...';
+
     const productos = data.data.filter(producto => producto.categoria_id === categoriaActual.id)
 
     return (
