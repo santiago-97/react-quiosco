@@ -15,10 +15,13 @@ export default function Inicio() {
         }
     }).then(data => data.data)
     
-    const { data, error, isLoading } = useSWR('/api/productos', fetcher, { refreshInterval: 10000 })
+    const { data, error, isLoading } = useSWR('/api/productos', fetcher, { 
+        refreshInterval: 10000,
+        revalidateOnMount: true,
+        revalidateOnFocus: true
+    })
 
     if(isLoading) return 'Cargando...';
-
     if(!categoriaActual?.id) return 'Cargando...';
 
     const productos = data.data.filter(producto => producto.categoria_id === categoriaActual.id)
